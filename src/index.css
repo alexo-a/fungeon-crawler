@@ -13,30 +13,28 @@ code {
 }
 
 .square {
-  border: 1px solid #999;
-  float: left;
-  font-size: 24px;
-  font-weight: bold;
-  height: 100px;
-  margin-right: -1px;
-  margin-top: -1px;
-  padding: 0;
-  text-align: center;
-  width: 100px;
+    box-sizing: border-box;
+    border: 1px solid black;
+    float: left;
+    font-weight: bold;
+    height: min(10vw, calc((100vh - 100px)/10));
+    margin: -1px;
+    padding: 0;
+    text-align: center;
+    width: min(10vw, calc((100vh - 100px)/10));
 }
 
-.map {
+.map, .map-row {
   display: flex;
   flex-direction: row;
-}
-
-ol, ul {
-  padding-left: 30px;
+  align-items: center;
+  margin: 0px auto;
+  justify-content: center;
 }
 
 .map-row:after {
   clear: both;
-  content: "";
+ content: "";
   display: table;
 }
 .green{
@@ -49,4 +47,16 @@ ol, ul {
 
 .red {
     background-color: red !important
+}
+
+.footer {
+    box-sizing: border-box;
+  position: fixed;
+  bottom: 0;
+margin: 0px auto;
+  width: 100%;
+  border: 3px solid #73AD21;
+  z-index:1;
+  height: 100px;
+  background-color: white;
 }

@@ -20,9 +20,11 @@ function Square({x,y, classNames}) {
             <></>
         )
     }*/
-
+    const handleClick = event => {
+        console.log(event.target.attributes.x.value)
+    };
     return (
-        <button className={classNames}>
+        <button x={x} y={y} className={classNames} onClick={(event)=> handleClick(event)}>
             {x}, {y}
         </button>
     );

@@ -4,12 +4,18 @@ import { useFungeonCrawlerReducer } from './reducers';
 const StoreContext = createContext();
 const { Provider } = StoreContext;
 const player = {
+    name: "Geraldo",
     position: {x:0, y:0},
     speed: 5,
     movementRemaining: 5
 }
-const enemy = JSON.parse(JSON.stringify(player))
-enemy.position={x: 5, y:5}
+const enemy = {
+    name: "Boblin",
+    position: { x: 3, y: 3 },
+    speed: 5,
+    movementRemaining: 5
+}
+
 const StoreProvider = ({ value = [], ...props }) => {
     // Set default state here.
     const [state, dispatch] = useFungeonCrawlerReducer({

@@ -1,6 +1,6 @@
 import './App.css';
 import Game from "./pages/Game"
-//import Footer from "./components/Footer"
+
 import { StoreProvider } from './utils/GlobalState';
 function App() {
     return (
@@ -9,7 +9,7 @@ function App() {
                 <header className="App-header">
                 </header>
                 <Game></Game>
-                {/*<Footer></Footer>*/}
+                
             </StoreProvider>
         </div>
     );
