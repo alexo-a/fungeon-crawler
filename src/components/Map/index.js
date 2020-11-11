@@ -2,12 +2,16 @@ import React, { useState }  from 'react';
 import Square from "../Square";
 import { useStoreContext } from '../../utils/GlobalState';
 import util from "util";
+const playerIndex=0;
+const enemyIndex=1;
 function Map() {
     const squares = [];
     const [state, dispatch] = useStoreContext();
-    const playerMoving = state.playerMoving;
-    const playerPosition = state.playerPosition;
-    const playerSpeed = state.playerSpeed;
+    const playersTurn= state.whoseTurn===playerIndex;
+    const playerMoving = state.entities[0].movementRemaining > 0;
+    const playerPosition = state.entities[0].position;
+    const enemyPosition=state.entities[1].position;
+    const playerSpeed = state.entities[0].speed;
     console.log(`playerSpeed: ${playerSpeed}`)
     console.log(`playerPosition: ${util.inspect(playerPosition, true, null, true)}`)
     console.log(`playerMoving: ${playerMoving}`)
@@ -18,7 +22,8 @@ function Map() {
         for(let x=0; x<10; x++){
             let classes="square";
             if (playerPosition.x === x && playerPosition.y === y) { classes += " gold"}
-            else if (playerMoving && Math.floor(Math.sqrt(Math.pow(playerPosition.x - x, 2) + Math.pow(playerPosition.y - y, 2))) <= playerSpeed) { classes += " green" };
+            else if (enemyPosition.x === x && enemyPosition.y === y) { classes += " red" }
+            else if (playersTurn && playerMoving && Math.floor(Math.sqrt(Math.pow(playerPosition.x - x, 2) + Math.pow(playerPosition.y - y, 2))) <= playerSpeed) { classes += " green" };
             squares[y].push(<Square x={x} y={y} classNames={classes}/>)
         }
     }
