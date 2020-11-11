@@ -1,15 +1,12 @@
 import React from "react";
-import {Map} from "./components/Map"
-
+import Map from "../components/Map/index.js"
+import { useStoreContext } from '../utils/GlobalState';
 function Game(){
+    const [state, dispatch] = useStoreContext();
     return (
         <div className="game">
-            <div className="game-board">
-                <Game />
-            </div>
-            <div className="game-info">
-                <div>{/* status */}</div>
-                <ol>{/* TODO */}</ol>
+            <div className="Map">
+                <Map />
             </div>
         </div>
     )

@@ -21,8 +21,8 @@ Player.prototype.getStats = function () {
 
 Player.prototype.setStats = function (stats) {
     this.hitpoints = stats.hitpoints;
-    this.initiative = stats.initiative,
-    this.speed = stats.speed,
+    this.initiative = stats.initiative;
+    this.speed = stats.speed;
     this.armor = stats.armor;
     this.hitBonus = stats.hitBonus;
     this.visibilityRange = stats.visibilityRange;
@@ -72,19 +72,7 @@ Player.prototype.addPotion = function (potion) {
 };
 
 Player.prototype.usePotion = function (index) {
-    const potion = this.getInventory().splice(index, 1)[0];
 
-    switch (potion.name) {
-        case 'agility':
-            this.agility += potion.value;
-            break;
-        case 'health':
-            this.health += potion.value;
-            break;
-        case 'strength':
-            this.strength += potion.value;
-            break;
-    }
 };
 Player.prototype.getPosition = function (){
     return this.getPosition;

@@ -5,19 +5,19 @@ export function roll(dice){
         case 20: 
             return Math.ceil(Math.random() * 20)
         case 12:
-            return Math.ceil(random.random() * 12)
+            return Math.ceil(Math.random() * 12)
 
         case 10:
-            return Math.ceil(random.random() * 10)
+            return Math.ceil(Math.random() * 10)
 
         case 8:
-            return Math.ceil(random.random() * 8)
+            return Math.ceil(Math.random() * 8)
 
         case 6:
-            return Math.ceil(random.random() * 6)
+            return Math.ceil(Math.random() * 6)
 
         case 4:
-            return Math.ceil(random.random() * 4)
+            return Math.ceil(Math.random() * 4)
         default:
             alert("wrong dice")
     }

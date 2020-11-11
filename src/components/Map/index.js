@@ -1,20 +1,20 @@
-import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'constants';
-import React from 'react';
-import {Square} from "./Square";
-
+import React, { useState }  from 'react';
+import Square from "../Square";
+import { useStoreContext } from '../../utils/GlobalState';
 function Map() {
-    let renderSquares = (x,y) => {
-        return <Square x={x} y={y}/>;
-    }
-    let squares = [];
-    for (let y = 0; y < 10; y++) {
-        for (let x = 0; x<10; x++){
-            squares.push(<Square x={x} y={y}/>)
-        }
-    }
+    const squares = [9,8,7,6,5,4,3,2,1,0];
+    const [state, dispatch] = useStoreContext();
     return (
         <div>
-            {squares}
+            { squares.map(y => {
+                return (
+                    <div className="map-row">
+                        { squares.map(x => {
+                            return(<Square x={9-x} y={y} />)
+                        })}
+                    </div>
+                )
+            })}
         </div>
     )
 }
