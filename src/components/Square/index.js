@@ -4,7 +4,7 @@ import React from 'react';
 //import { useQuery } from '@apollo/react-hooks';
 //import { QUERY_MY_PROJECTS } from '../../utils/queries';
 
-function Square({x,y}) {
+function Square({x,y, classNames}) {
     /*const logout = event => {
         event.preventDefault();
         Auth.logout();
@@ -22,7 +22,7 @@ function Square({x,y}) {
     }*/
 
     return (
-        <button className="square">
+        <button className={classNames}>
             {x}, {y}
         </button>
     );
