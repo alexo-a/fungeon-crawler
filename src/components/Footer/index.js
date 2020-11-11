@@ -5,12 +5,17 @@ import util from "util";
 
 function Footer({playerIndex}) {
     const [state, dispatch] = useStoreContext();
-    console.log(playerIndex, state.whoseTurn)
     return (
+
         <div className="footer">
-            {playerIndex===state.whoseTurn ? 
-                "Your Turn!"
-             : "Their turn, please wait."}
+            <div>
+                {playerIndex===state.whoseTurn ? 
+                    "Your Turn!"
+                : "Their turn, please wait."}
+            </div>
+            <div>
+                {`${state.entities[state.whoseTurn].name} has ${state.entities[state.whoseTurn].movementRemaining} movement remaining`}
+            </div>
         </div>
     )
 

@@ -1,28 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useStoreContext } from '../../utils/GlobalState';
+import { MOVE_ENTITY } from "../../utils/actions"
 //import { Link } from "react-router-dom";
-//import Auth from "../../utils/auth";
+import util from "util";
 //import { useQuery } from '@apollo/react-hooks';
-//import { QUERY_MY_PROJECTS } from '../../utils/queries';
+import {calculateMovment} from '../../utils/GameData/calculations';
 
 function Square({x,y, classNames}) {
-    /*const logout = event => {
-        event.preventDefault();
-        Auth.logout();
-    };
+    const [state, dispatch] = useStoreContext();
 
-    const { loading, data } = useQuery(QUERY_MY_PROJECTS);
-
-    const projects = data?.myProjects || {};
-    const me = data?.me || {};
-
-    if (loading) {
-        return (
-            <></>
-        )
-    }*/
     const handleClick = event => {
-        console.log(event.target.attributes.x.value)
+        const targetX=event.target.attributes.x.value;
+        const targetY = event.target.attributes.y.value;
+        console.log(`${state.entities[state.whoseTurn].name} is attempting to move to (${targetX}, ${targetY})`)
+        const attemptedMoveDistance = calculateMovment({ x: targetX, y: targetY }, state.entities[state.whoseTurn].position)
+        if (state.entities[state.whoseTurn].movementRemaining >= attemptedMoveDistance){
+            console.log("it was successful")
+            dispatch({
+                type: MOVE_ENTITY,
+                newPosition: {
+                    x: parseInt(targetX),
+                    y: parseInt(targetY)
+                },
+                movementRemaining: state.entities[state.whoseTurn].movementRemaining - attemptedMoveDistance
+            })
+            console.log(util.inspect(state, true, null, true))
+            //console.log(`${state.entities[state.whoseTurn].name} is now at (${state.entities[state.whoseTurn].position.x}, ${state.entities[state.whoseTurn].position.y})`)
+        }
     };
+
     return (
         <button x={x} y={y} className={classNames} onClick={(event)=> handleClick(event)}>
             {x}, {y}

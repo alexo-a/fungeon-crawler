@@ -1,2 +1,2 @@
-export const MOVE_PLAYER = "MOVE_PLAYER";
+export const MOVE_ENTITY = "MOVE_ENTITY";
 export const FORCE_RENDER = "FORCE_RENDER";
