@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useStoreContext } from '../../utils/GlobalState';
-import util from "util"; 
+//import util from "util"; 
 
 
 function Footer({playerIndex}) {
-    const [state, dispatch] = useStoreContext();
+    const [state] = useStoreContext();
     return (
 
         <div className="footer">

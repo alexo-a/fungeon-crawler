@@ -1,14 +1,14 @@
-import React, { useState }  from 'react';
+import React  from 'react';
 import Square from "../Square";
 import { useStoreContext } from '../../utils/GlobalState';
 import util from "util";
 const playerIndex=0;
-const enemyIndex=1;
+//const enemyIndex=1;
 
 function Map() {
     let squares = [];
-    let [state, dispatch] = useStoreContext();
-    const [currentState, setCurrentState] = useState({})
+    let [state] = useStoreContext();
+    //const [currentState, setCurrentState] = useState({})
     const playersTurn = state.whoseTurn===playerIndex;
     let playerMoving = state.entities[0].movementRemaining > 0;
     let playerPosition = state.entities[0].position;
@@ -27,15 +27,15 @@ function Map() {
             if (playerPosition.x === x && playerPosition.y === y) { classes = "square gold"}
             else if (enemyPosition.x === x && enemyPosition.y === y) { classes = "square red" }
             else if (playersTurn && playerMoving && Math.floor(Math.sqrt(Math.pow(playerPosition.x - x, 2) + Math.pow(playerPosition.y - y, 2))) <= playerSpeed) { classes = "square green" };
-            squares[y].push(<Square x={x} y={y} classNames={classes}/>)
+            squares[y].push(<Square x={x} y={y} classNames={classes} key={x.toString() + y.toString()}/>)
         }
     }
     console.log(util.inspect(state, true, null, true))
     return (
         <>
-            {squares.map(row => {
+            {squares.map((row, index) => {
                 return (
-                    <div className="map-row">
+                    <div className="map-row" key={"row"+ index.toString() }>
                         {row.map(sq => {
                             return (sq)
                         })}
