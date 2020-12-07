@@ -2,7 +2,7 @@ import React from 'react';
 import { useStoreContext } from '../../utils/GlobalState';
 import { MOVE_ENTITY } from "../../utils/actions"
 import util from "util";
-import {calculateMovment} from '../../utils/GameData/calculations';
+import {calculateMovement} from '../../utils/GameData/calculations';
 
 function Square({x,y, classNames}) {
     const [state, dispatch] = useStoreContext();
@@ -12,7 +12,7 @@ function Square({x,y, classNames}) {
         const targetY = event.target.attributes.y.value;
         const targetPosition = { x: parseInt(targetX), y: parseInt(targetY)}
         console.log(`${state.entities[state.whoseTurn].name} is attempting to move to (${targetX}, ${targetY})`)
-        const attemptedMoveDistance = calculateMovment({ x: targetX, y: targetY }, state.entities[state.whoseTurn].position)
+        const attemptedMoveDistance = calculateMovement({ x: targetX, y: targetY }, state.entities[state.whoseTurn].position)
         
         if (state.entities[state.whoseTurn].movementRemaining >= attemptedMoveDistance){
             let movePossible=true;
