@@ -6,7 +6,7 @@ import { useStoreContext } from '../utils/GlobalState';
 function Game(){
     let [state, dispatch] = useStoreContext();
     let playerIndex = 0;
-    if (state.whoseTurn){}
+    
     return (
         <>
         <div className="game">

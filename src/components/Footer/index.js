@@ -1,6 +1,7 @@
 import React from 'react';
 import { useStoreContext } from '../../utils/GlobalState';
 import { TOGGLE_MOVEMENT_MODE, END_TURN } from "../../utils/actions"
+import { attackTarget } from '../../utils/GameData/calculations';
 
 function Footer({ playerIndex }) {
     const [state, dispatch] = useStoreContext();
@@ -11,6 +12,11 @@ function Footer({ playerIndex }) {
 
     function endTurn() {
         dispatch({ type: END_TURN })
+    }
+    function attack(){
+        dispatch({ type: TOGGLE_MOVEMENT_MODE,
+            setMovement: false })
+        
     }
     return (
         <div className="footer">
@@ -26,7 +32,7 @@ function Footer({ playerIndex }) {
                         {`${state.entities[state.whoseTurn].name} has ${state.entities[state.whoseTurn].movementRemaining} movement remaining`}
                     </div>
                     <button className={state.entities[state.whoseTurn].movementRemaining > 0 ? "" : "disabled"} onClick={function () { toggleMove() }}>{state.movementMode ? "Moving" : "Move"}</button>
-                    <button>Attack</button>
+                    <button onClick={function(){attack()}}>Attack</button>
                     <button onClick={function () { endTurn() }}>End Turn</button>
                 </>
                 )

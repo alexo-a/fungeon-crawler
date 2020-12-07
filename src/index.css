@@ -45,11 +45,16 @@ code {
 }
 
 .gold{
-    background-color: gold !important
+    /*background-color: gold !important*/
+    background-image: url("./assets/sprites/player.png");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .red {
-    background-color: red !important
+        background-image: url("./assets/sprites/goblin.png");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .footer {

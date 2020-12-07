@@ -29,8 +29,15 @@ export const reducer = (state, action) => {
                 forceRender: action.forceRender
             }	
         case TOGGLE_MOVEMENT_MODE:
-            let tempMovementMode = state.movementMode;
-            if (state.entities[state.whoseTurn].movementRemaining > 0){ tempMovementMode = !tempMovementMode}
+            let tempMovementMode;
+            if (typeof action.setMovement === "undefined"){
+                tempMovementMode = state.movementMode;
+                if (state.entities[state.whoseTurn].movementRemaining > 0){ tempMovementMode = !tempMovementMode}
+                console.log(action.setMovement)
+            }
+            else {
+                tempMovementMode = action.setMovement
+            }
             return {
                 ...state,
                 movementMode: tempMovementMode

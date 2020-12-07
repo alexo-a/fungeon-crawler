@@ -23,6 +23,11 @@ export function roll(dice){
     }
 }
 
-export function calculateMovement (target, currentPosition) {
+export function calculateDistance (target, currentPosition) {
     return Math.floor(Math.sqrt(Math.pow(target.x - currentPosition.x, 2) + Math.pow(target.y - currentPosition.y, 2)))
+}
+
+export function attackTarget(attacker, target, weapon){
+    
+    if (weapon.range >= calculateDistance(target.position, attacker.position)){alert("Attack Worked!")}
 }
