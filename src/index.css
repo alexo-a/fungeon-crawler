@@ -20,6 +20,9 @@ code {
     padding: 0;
     text-align: center;
     width: min(10vw, calc((100vh - 100px)/10));
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .map, .map-row {
@@ -53,8 +56,22 @@ code {
     bottom: 0;
     margin: 0px auto;
     width: 100%;
-    border: 3px solid #73AD21;
+    border: 3px solid black;
     z-index:1;
     height: 100px;
-    background-color: white;
+    background-color: rgba(214,157,73,1);
+}
+
+button {
+    margin: 10px;
+    font-size: 1rem;
+    background-color: rgba(151, 104, 34,1)
+}
+
+button:hover {
+    background-color: rgba(151, 104, 34, .6)
+}
+
+.disabled {
+    background-color: grey;
 }

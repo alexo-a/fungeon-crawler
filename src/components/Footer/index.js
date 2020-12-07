@@ -2,7 +2,7 @@ import React from 'react';
 import { useStoreContext } from '../../utils/GlobalState';
 import { TOGGLE_MOVEMENT_MODE, END_TURN } from "../../utils/actions"
 
-function Footer({playerIndex}) {
+function Footer({ playerIndex }) {
     const [state, dispatch] = useStoreContext();
 
     function toggleMove() {
@@ -15,16 +15,24 @@ function Footer({playerIndex}) {
     return (
         <div className="footer">
             <div>
-                {playerIndex===state.whoseTurn ? 
+                {playerIndex === state.whoseTurn ?
                     "Your Turn!"
-                : "Their turn, please wait."}
+                    : "Their turn, please wait."}
             </div>
-            <div>
-                {`${state.entities[state.whoseTurn].name} has ${state.entities[state.whoseTurn].movementRemaining} movement remaining`}
-            </div>
-            <button onClick={function(){toggleMove()}}>{state.movementMode ? "Moving" : "Move"}</button>
-            <button>Attack</button>
-            <button onClick={function () { endTurn() }}>End Turn</button>
+            {
+                state.whoseTurn === playerIndex ? (
+                <>
+                    <div>
+                        {`${state.entities[state.whoseTurn].name} has ${state.entities[state.whoseTurn].movementRemaining} movement remaining`}
+                    </div>
+                    <button className={state.entities[state.whoseTurn].movementRemaining > 0 ? "" : "disabled"} onClick={function () { toggleMove() }}>{state.movementMode ? "Moving" : "Move"}</button>
+                    <button>Attack</button>
+                    <button onClick={function () { endTurn() }}>End Turn</button>
+                </>
+                )
+                : null
+            }
+
         </div>
     )
 
