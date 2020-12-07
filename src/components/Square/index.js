@@ -1,9 +1,7 @@
 import React from 'react';
 import { useStoreContext } from '../../utils/GlobalState';
 import { MOVE_ENTITY } from "../../utils/actions"
-//import { Link } from "react-router-dom";
 import util from "util";
-//import { useQuery } from '@apollo/react-hooks';
 import {calculateMovment} from '../../utils/GameData/calculations';
 
 function Square({x,y, classNames}) {

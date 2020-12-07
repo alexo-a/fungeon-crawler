@@ -1,12 +1,15 @@
 import React from 'react';
 import { useStoreContext } from '../../utils/GlobalState';
-//import util from "util"; 
-
+import { TOGGLE_MOVEMENT_MODE } from "../../utils/actions"
 
 function Footer({playerIndex}) {
-    const [state] = useStoreContext();
-    return (
+    const [state, dispatch] = useStoreContext();
 
+    function toggleMove() {
+        dispatch({ type: TOGGLE_MOVEMENT_MODE })
+    }
+
+    return (
         <div className="footer">
             <div>
                 {playerIndex===state.whoseTurn ? 
@@ -16,9 +19,10 @@ function Footer({playerIndex}) {
             <div>
                 {`${state.entities[state.whoseTurn].name} has ${state.entities[state.whoseTurn].movementRemaining} movement remaining`}
             </div>
+            <button onClick={function(){toggleMove()}}>{state.movementMode ? "Moving" : "Move"}</button>
+            <button>Attack</button>
         </div>
     )
-
 
 }
 

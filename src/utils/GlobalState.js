@@ -20,7 +20,8 @@ const StoreProvider = ({ value = [], ...props }) => {
     // Set default state here.
     const [state, dispatch] = useFungeonCrawlerReducer({
         entities: [player,enemy],
-        whoseTurn: 0
+        whoseTurn: 0,
+        movementMode: false
     });
     return <Provider value={[state, dispatch]} {...props} />;
 };

@@ -1,2 +1,3 @@
 export const MOVE_ENTITY = "MOVE_ENTITY";
 export const FORCE_RENDER = "FORCE_RENDER";
+export const TOGGLE_MOVEMENT_MODE = "TOGGLE_MOVEMENT_MODE";
