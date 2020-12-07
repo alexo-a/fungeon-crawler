@@ -12,8 +12,8 @@ const player = {
 const enemy = {
     name: "Boblin",
     position: { x: 3, y: 3 },
-    speed: 5,
-    movementRemaining: 5
+    speed: 3,
+    movementRemaining: 3
 }
 
 const StoreProvider = ({ value = [], ...props }) => {
@@ -21,7 +21,8 @@ const StoreProvider = ({ value = [], ...props }) => {
     const [state, dispatch] = useFungeonCrawlerReducer({
         entities: [player,enemy],
         whoseTurn: 0,
-        movementMode: false
+        movementMode: false,
+        round: 0
     });
     return <Provider value={[state, dispatch]} {...props} />;
 };

@@ -3,10 +3,12 @@ import { useReducer } from 'react';
 import {
     FORCE_RENDER,
     MOVE_ENTITY,
-    TOGGLE_MOVEMENT_MODE
+    TOGGLE_MOVEMENT_MODE,
+    END_TURN
 } from './actions';
 
 export const reducer = (state, action) => {
+    
 	switch (action.type) {
         case MOVE_ENTITY:
             let tmpEntities= [...state.entities];
@@ -33,6 +35,24 @@ export const reducer = (state, action) => {
                 ...state,
                 movementMode: tempMovementMode
             }	
+        case END_TURN:
+            console.log(`end of ${state.entities[state.whoseTurn].name}'s turn`)
+            let newEntities = [...state.entities];
+            let nextTurnIndex=0;
+            if ( state.whoseTurn < state.entities.length - 1 ) { nextTurnIndex = state.whoseTurn + 1 }
+            console.log(`start of ${state.entities[nextTurnIndex].name}'s turn`)
+            if (nextTurnIndex === 0 ){
+                for ( let x = 0; x < newEntities.length; x++){
+                    newEntities[x].movementRemaining = newEntities[x].speed
+                }
+            }
+            return {
+                ...state,
+                movementMode: false,
+                whoseTurn: nextTurnIndex,
+                entities: nextTurnIndex === 0 ? newEntities : state.entities,
+                round: nextTurnIndex === 0 ? state.round++ : state.round
+            }
 		default:
 			return state;
 	}

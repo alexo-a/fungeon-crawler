@@ -1,6 +1,6 @@
 import React from 'react';
 import { useStoreContext } from '../../utils/GlobalState';
-import { TOGGLE_MOVEMENT_MODE } from "../../utils/actions"
+import { TOGGLE_MOVEMENT_MODE, END_TURN } from "../../utils/actions"
 
 function Footer({playerIndex}) {
     const [state, dispatch] = useStoreContext();
@@ -9,6 +9,9 @@ function Footer({playerIndex}) {
         dispatch({ type: TOGGLE_MOVEMENT_MODE })
     }
 
+    function endTurn() {
+        dispatch({ type: END_TURN })
+    }
     return (
         <div className="footer">
             <div>
@@ -21,6 +24,7 @@ function Footer({playerIndex}) {
             </div>
             <button onClick={function(){toggleMove()}}>{state.movementMode ? "Moving" : "Move"}</button>
             <button>Attack</button>
+            <button onClick={function () { endTurn() }}>End Turn</button>
         </div>
     )
 

@@ -12,6 +12,7 @@ function Square({x,y, classNames}) {
         const targetY = event.target.attributes.y.value;
         console.log(`${state.entities[state.whoseTurn].name} is attempting to move to (${targetX}, ${targetY})`)
         const attemptedMoveDistance = calculateMovment({ x: targetX, y: targetY }, state.entities[state.whoseTurn].position)
+        
         if (state.entities[state.whoseTurn].movementRemaining >= attemptedMoveDistance){
             console.log("it was successful")
             dispatch({
@@ -22,7 +23,7 @@ function Square({x,y, classNames}) {
                 },
                 movementRemaining: state.entities[state.whoseTurn].movementRemaining - attemptedMoveDistance
             })
-            console.log(util.inspect(state, true, null, true))
+            //console.log(util.inspect(state, true, null, false))
             //console.log(`${state.entities[state.whoseTurn].name} is now at (${state.entities[state.whoseTurn].position.x}, ${state.entities[state.whoseTurn].position.y})`)
         }
     };

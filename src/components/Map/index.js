@@ -24,7 +24,7 @@ function Map() {
         }
     }
 
-    console.log(util.inspect(state, true, null, true))
+    console.log(util.inspect(state, true, null, false))
     return (
         <>
             {squares.map((row, index) => {
