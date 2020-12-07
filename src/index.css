@@ -4,6 +4,7 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     padding-top: 5px;
+    background-image: url("./assets/images/dungeon-wall.png");
 }
 
 code {
@@ -22,6 +23,7 @@ code {
     width: min(10vw, calc((100vh - 100px)/10));
     display: flex;
     align-items: center;
+    background-color: grey;
     justify-content: center;
 }
 
