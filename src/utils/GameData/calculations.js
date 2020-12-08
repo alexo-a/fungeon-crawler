@@ -28,6 +28,14 @@ export function calculateDistance (target, currentPosition) {
 }
 
 export function attackTarget(attacker, target){
-
-    if (attacker.activeWeapon.range >= calculateDistance(target.position, attacker.position)){alert("Attack Worked!")}
+    //calculate if it's a hit
+    let hitRoll = roll(20)
+    console.log(`${attacker.name}'s raw hit roll: ${hitRoll}`)
+    let hitSum = attacker.hitBonus + attacker.agility + hitRoll
+    let gearArmorSum = 0;
+    for (const [slot, item] of Object.entries(target.activeGear)) {
+        gearArmorSum += item.armor;
+    }
+    let defenceSum = target.armor + gearArmorSum;
+    console.log(`${attacker.name} rolls a ${hitSum} vs. ${target.name}'s armor of ${defenceSum}`)
 }

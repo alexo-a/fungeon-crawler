@@ -44,9 +44,16 @@ export const reducer = (state, action) => {
                 movementMode: tempMovementMode
             }	
         case TOGGLE_ATTACK_MODE:
+            let tempAttackMode;
+            if (typeof action.setAttackMode === "undefined") {
+                tempAttackMode = !state.attackMode;
+            }
+            else {
+                tempAttackMode = action.setAttackMode
+            }
             return {
                 ...state,
-                attackMode: !state.attackMode
+                attackMode: tempAttackMode
             }
         case END_TURN:
             console.log(`end of ${state.entities[state.whoseTurn].name}'s turn`)

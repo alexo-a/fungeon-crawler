@@ -2,6 +2,7 @@
 
 function Player(name = '') {
     this.name = name;
+    this.activeGear={}
 }
 
 Player.prototype.getStats = function () {
@@ -17,7 +18,8 @@ Player.prototype.getStats = function () {
         agility: this.agility,
         movementRemaining: this.movementRemaining,
         position: this.position,
-        activeWeapon: this.activeWeapon
+        activeWeapon: this.activeWeapon,
+        equippedGear: this.equippedGear
     };
 };
 
@@ -57,6 +59,34 @@ Player.prototype.equipWeapon = function(weapon){
                 this.activeWeapon = weapon;
             }
             break;
+        }
+    }
+}
+
+Player.prototype.equipGear = function(item){
+    //item must be in inventory
+    for (let x = 0; x < this.inventory.length; x++) {
+        if (this.inventory[x].name === item.name && this.inventory[x].quantity >= 1) {
+            switch (item.class){
+                case "torso":
+                    this.activeGear.torso = item;
+                    break;
+                case "neck":
+                    this.activeGear.neck = item;
+                    break;
+                case "head":
+                    this.activeGear.head = item;
+                    break;
+                case "hands":
+                    this.activeGear.hands = item;
+                    break;
+                case "back":
+                    this.activeGear.back = item;
+                    break;
+                default:
+                    alert("not an active gear item. needs to be of class torso/neck/head/hands/back")
+
+            }
         }
     }
 }

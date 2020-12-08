@@ -2,7 +2,7 @@ import React  from 'react';
 import Square from "../Square";
 import { useStoreContext } from '../../utils/GlobalState';
 //import util from "util";
-import { MOVE_ENTITY } from "../../utils/actions"
+import { MOVE_ENTITY, TOGGLE_ATTACK_MODE } from "../../utils/actions"
 import {calculateDistance, attackTarget} from "../../utils/GameData/calculations"
 
 const playerIndex=0;
@@ -78,12 +78,16 @@ function Map() {
 
             attackValid = attackValid && calculateDistance(targetPosition,state.entities[playerIndex].position)  <= state.entities[playerIndex].activeWeapon.range
             if (attackValid){
-                attackTarget(state.entities[playerIndex],state.entities[targetMobIndex])
+                attackTarget(state.entities[playerIndex],state.entities[targetMobIndex]);
+                dispatch({
+                    type: TOGGLE_ATTACK_MODE,
+                    setAttackMode: false
+                })
             }
         }
     };
 
-    console.log(hostilePositions)
+    console.log(state)
 
     for (let y = 0; y < 10; y++) {
         squares.push([])

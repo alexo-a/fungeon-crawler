@@ -32,7 +32,7 @@ function Footer({ playerIndex }) {
                         {`${state.entities[state.whoseTurn].name} has ${state.entities[state.whoseTurn].movementRemaining} movement remaining`}
                     </div>
                     <button className={state.entities[state.whoseTurn].movementRemaining > 0 ? "" : "disabled"} onClick={function () { toggleMove() }}>{state.movementMode ? "Moving" : "Move"}</button>
-                    <button onClick={function(){attack()}}>Attack</button>
+                        <button onClick={function () { attack() }}>{state.attackMode ? "ATTACKING!!" : "Attack"}</button>
                     <button onClick={function () { endTurn() }}>End Turn</button>
                 </>
                 )
