@@ -1,7 +1,7 @@
 import React from 'react';
 import { useStoreContext } from '../../utils/GlobalState';
 import { TOGGLE_MOVEMENT_MODE, END_TURN, TOGGLE_ATTACK_MODE } from "../../utils/actions"
-import { attackTarget } from '../../utils/GameData/calculations';
+//import { attackTarget } from '../../utils/GameData/calculations';
 
 function Footer({ playerIndex }) {
     const [state, dispatch] = useStoreContext();

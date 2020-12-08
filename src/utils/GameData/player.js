@@ -32,19 +32,23 @@ Player.prototype.setStats = function (stats) {
     this.trapDisableBonus = stats.trapDisableBonus || 0;
     this.agility = stats.agility || 0;
 };
+
 Player.prototype.setMovementRemaining = function(newValue){
     this.movementRemaining = newValue || this.speed
 }
+
 Player.prototype.setInventory = function (contents) {
     this.inventory = contents;
     return this.inventory;
 }
+
 Player.prototype.getInventory = function () {
     if (this.inventory.length) {
         return this.inventory;
     }
     return false;
 };
+
 Player.prototype.equipWeapon = function(weapon){
     //weapon must be in inventory
     for (let x = 0; x < this.inventory.length; x++ ){
@@ -56,9 +60,11 @@ Player.prototype.equipWeapon = function(weapon){
         }
     }
 }
+
 Player.prototype.getWeapon = function(){
     return this.activeWeapon;
 }
+
 Player.prototype.getHealth = function () {
     return `${this.name}'s health is now ${this.health}!`;
 };

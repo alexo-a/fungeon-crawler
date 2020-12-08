@@ -1,10 +1,11 @@
 import React, { createContext, useContext } from "react";
 import { useFungeonCrawlerReducer } from './reducers';
-import Player from "./GameData/player"
+import Player from "./GameData/Player"
 import Items from "./GameData/Items"
 
 const StoreContext = createContext();
 const { Provider } = StoreContext;
+
 const geraldo = new Player("Geraldo");
 geraldo.setStats({speed: 5})
 geraldo.setPosition({ x: 9, y: 9 })

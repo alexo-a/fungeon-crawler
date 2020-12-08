@@ -46,15 +46,15 @@ code {
     background-color: green;
 }
 
-.gold{
+.activePlayer{
     /*background-color: gold !important*/
     background-image: url("./assets/sprites/player.png");
     background-repeat: no-repeat;
     background-size: cover;
 }
 
-.red {
-        background-image: url("./assets/sprites/goblin.png");
+.mob {
+    background-image: url("./assets/sprites/goblin.png");
     background-repeat: no-repeat;
     background-size: cover;
 }

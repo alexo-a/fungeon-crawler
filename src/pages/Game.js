@@ -1,10 +1,10 @@
 import React from "react";
-import Map from "../components/Map/index.js"
+import Map from "../components/Map"
 import Footer from "../components/Footer"
-import { useStoreContext } from '../utils/GlobalState';
+//import { useStoreContext } from '../utils/GlobalState';
 
 function Game(){
-    let [state, dispatch] = useStoreContext();
+    //let [state, dispatch] = useStoreContext();
     let playerIndex = 0;
     
     return (
