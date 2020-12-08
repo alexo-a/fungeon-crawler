@@ -4,7 +4,8 @@ import {
     FORCE_RENDER,
     MOVE_ENTITY,
     TOGGLE_MOVEMENT_MODE,
-    END_TURN
+    END_TURN,
+    TOGGLE_ATTACK_MODE
 } from './actions';
 
 export const reducer = (state, action) => {
@@ -33,7 +34,7 @@ export const reducer = (state, action) => {
             if (typeof action.setMovement === "undefined"){
                 tempMovementMode = state.movementMode;
                 if (state.entities[state.whoseTurn].movementRemaining > 0){ tempMovementMode = !tempMovementMode}
-                console.log(action.setMovement)
+                //console.log(action.setMovement)
             }
             else {
                 tempMovementMode = action.setMovement
@@ -42,6 +43,11 @@ export const reducer = (state, action) => {
                 ...state,
                 movementMode: tempMovementMode
             }	
+        case TOGGLE_ATTACK_MODE:
+            return {
+                ...state,
+                attackMode: !state.attackMode
+            }
         case END_TURN:
             console.log(`end of ${state.entities[state.whoseTurn].name}'s turn`)
             let newEntities = [...state.entities];

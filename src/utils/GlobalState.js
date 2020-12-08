@@ -25,7 +25,8 @@ const StoreProvider = ({ value = [], ...props }) => {
         entities: [geraldo, boblin],
         whoseTurn: 0,
         movementMode: false,
-        round: 0
+        round: 0,
+        attackMode: false
     });
     return <Provider value={[state, dispatch]} {...props} />;
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useStoreContext } from '../../utils/GlobalState';
-import { TOGGLE_MOVEMENT_MODE, END_TURN } from "../../utils/actions"
+import { TOGGLE_MOVEMENT_MODE, END_TURN, TOGGLE_ATTACK_MODE } from "../../utils/actions"
 import { attackTarget } from '../../utils/GameData/calculations';
 
 function Footer({ playerIndex }) {
@@ -16,7 +16,7 @@ function Footer({ playerIndex }) {
     function attack(){
         dispatch({ type: TOGGLE_MOVEMENT_MODE,
             setMovement: false })
-        
+        dispatch({type: TOGGLE_ATTACK_MODE})
     }
     return (
         <div className="footer">
