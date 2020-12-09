@@ -19,7 +19,7 @@ export function roll(dice){
         case 4:
             return Math.ceil(Math.random() * 4)
         default:
-            alert("wrong dice")
+            alert(`${dice} isn't a valid dice option`)
     }
 }
 
@@ -38,4 +38,11 @@ export function attackTarget(attacker, target){
     }
     let defenceSum = target.armor + gearArmorSum;
     console.log(`${attacker.name} rolls a ${hitSum} vs. ${target.name}'s armor of ${defenceSum}`)
+    if (hitSum >= defenceSum){
+        let damageDone = roll(attacker.activeWeapon.damage)
+        target.reduceHitpoints(damageDone);
+        console.log(`attack hit! ${attacker.name} does ${damageDone} damage. ${target.getHitpoints()}`)
+        
+    }
+    else {console.log("whoosh.")}
 }

@@ -1,7 +1,6 @@
-//import NPC from "./npc.js";
-
-function Player(name = '') {
+function Player(name = '', isNPC = true) {
     this.name = name;
+    this.isNPC = isNPC;
     this.activeGear={}
 }
 
@@ -95,8 +94,8 @@ Player.prototype.getWeapon = function(){
     return this.activeWeapon;
 }
 
-Player.prototype.getHealth = function () {
-    return `${this.name}'s health is now ${this.health}!`;
+Player.prototype.getHitpoints = function () {
+    return `${this.name}'s health is now ${this.hitpoints}!`;
 };
 
 Player.prototype.isAlive = function () {
@@ -106,11 +105,11 @@ Player.prototype.isAlive = function () {
     return true;
 };
 
-Player.prototype.reduceHealth = function (health) {
-    this.health -= health;
+Player.prototype.reduceHitpoints = function (damage) {
+    this.hitpoints -= damage;
 
-    if (this.health < 0) {
-        this.health = 0;
+    if (this.hitpoints < 0) {
+        this.hitpoints = 0;
     }
 };
 

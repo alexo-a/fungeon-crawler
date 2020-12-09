@@ -78,16 +78,23 @@ function Map() {
 
             attackValid = attackValid && calculateDistance(targetPosition,state.entities[playerIndex].position)  <= state.entities[playerIndex].activeWeapon.range
             if (attackValid){
-                attackTarget(state.entities[playerIndex],state.entities[targetMobIndex]);
+                attackTarget(state.entities[playerIndex], state.entities[targetMobIndex]);
+                //I don't think I need this first dispatch. Is it because there's a dispatch immediately afterwards that updates it anyway? I think so...
+                /*
+                dispatch({
+                    type: UPDATE_ENTITY_STATS,
+                    entity: newMobData,
+                    entityIndex: targetMobIndex
+                });*/
                 dispatch({
                     type: TOGGLE_ATTACK_MODE,
                     setAttackMode: false
-                })
+                });
             }
         }
     };
 
-    console.log(state)
+    //console.log(state)
 
     for (let y = 0; y < 10; y++) {
         squares.push([])

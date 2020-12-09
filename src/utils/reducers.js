@@ -5,7 +5,8 @@ import {
     MOVE_ENTITY,
     TOGGLE_MOVEMENT_MODE,
     END_TURN,
-    TOGGLE_ATTACK_MODE
+    TOGGLE_ATTACK_MODE,
+    UPDATE_ENTITY_STATS
 } from './actions';
 
 export const reducer = (state, action) => {
@@ -72,6 +73,12 @@ export const reducer = (state, action) => {
                 whoseTurn: nextTurnIndex,
                 entities: nextTurnIndex === 0 ? newEntities : state.entities,
                 round: nextTurnIndex === 0 ? state.round++ : state.round
+            }
+        case UPDATE_ENTITY_STATS:
+            let tempState = state;
+            tempState[action.entityIndex] = action.entity
+            return {
+                ...tempState
             }
 		default:
 			return state;
