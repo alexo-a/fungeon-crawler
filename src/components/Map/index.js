@@ -16,14 +16,18 @@ function Map() {
     let enemyPosition = state.entities[1].position;
     let hostilePositions = []
     //const playerSpeed = state.entities[0].speed;
+
+    function doPositionsMatch(positionOne, positionTwo){
+        return positionOne.x === positionTwo.x && positionOne.y === positionTwo.y
+    }
     for (let x = 0; x < state.entities.length; x++){
         if (x!==playerIndex){
-            if (state.entities[x].hitpoints <= 0){
+            /*if (state.entities[x].hitpoints <= 0){
                 hostilePositions.push({x: null, y: null})
             }
-            else { 
+            else { */
                 hostilePositions.push(state.entities[x].position)
-            }
+            //}
         }
         else {hostilePositions.push({x:null, y:null})}
     }
@@ -41,7 +45,7 @@ function Map() {
             if (state.entities[state.whoseTurn].movementRemaining >= attemptedMoveDistance) {
                 let movePossible = true;
                 for (let x = 0; x < state.entities.length; x++) {
-                    if (targetPosition.x === state.entities[x].position.x && targetPosition.y === state.entities[x].position.y) {
+                    if (doPositionsMatch(targetPosition,state.entities[x])){//targetPosition.x === state.entities[x].position.x && targetPosition.y === state.entities[x].position.y) {
                         movePossible = false;
                         break;
                     }
@@ -70,7 +74,8 @@ function Map() {
             let targetMobIndex = null;
             console.log(`attempting to attack mob at ${targetPosition.x}, ${targetPosition.y}`)
             for (let i = 0; i < hostilePositions.length; i++) {
-                if (hostilePositions[i].x === targetPosition.x && hostilePositions[i].y === targetPosition.y) {
+                if (doPositionsMatch(hostilePositions[i], targetPosition)){
+                    //hostilePositions[i].x === targetPosition.x && hostilePositions[i].y === targetPosition.y) {
                     targetMobIndex=i;
                     attackValid=true;
                 }
@@ -78,6 +83,7 @@ function Map() {
 
             attackValid = attackValid && calculateDistance(targetPosition,state.entities[playerIndex].position)  <= state.entities[playerIndex].activeWeapon.range
             if (attackValid){
+                console.log("attack was valid")
                 attackTarget(state.entities[playerIndex], state.entities[targetMobIndex]);
                 //I don't think I need this first dispatch. Is it because there's a dispatch immediately afterwards that updates it anyway? I think so...
                 /*
@@ -100,17 +106,28 @@ function Map() {
         squares.push([])
         for (let x = 0; x < 10; x++) {
             let classes = "square";
-            if (player.position.x === x && player.position.y === y) { classes = "square activePlayer" }
-            else if (enemyPosition.x === x && enemyPosition.y === y) { classes = "square mob" }
+            //if (x===9){console.log(player.position); console.log({x,y})}
+            if (doPositionsMatch(player.position, {x,y})) { classes = "square activePlayer"; console.log("match2")}
+            //else if (enemyPosition.x === x && enemyPosition.y === y) { classes = "square mob" }
+            
             else if (playersTurn && playerMoving && calculateDistance({x,y},player.position) <= player.movementRemaining && state.movementMode) { classes = "square green" }
             
-            if (playersTurn && state.attackMode && calculateDistance({x,y},player.position) <= player.activeWeapon.range ){
+            //if (playersTurn && calculateDistance({x,y},player.position) <= player.activeWeapon.range ){
                 for (let i = 0; i < hostilePositions.length; i++){
-                    if (hostilePositions[i].x === x && hostilePositions[i].y===y){
-                        classes="square mob red-background"
+                    if (doPositionsMatch(hostilePositions[i],{x,y})){
+                        //if player's turn and attack mode and within wep range
+                        if (state.whoseTurn === playerIndex && state.attackMode && calculateDistance({ x, y }, player.position) <= player.activeWeapon.range) { classes = "square mob red-background"}
+                        
+                        
+                        //else if mob is alive
+                        else if (state.entities[i].isAlive()) { classes = "square mob"}
+                        
+                        //else 
+                        else { classes = "square dead-mob"}
+                        
                     }
                 }
-            }
+            //}
             squares[y].push(<Square x={x} y={y} classNames={classes} key={x.toString() + y.toString()} handleClick={(event)=>{handleClick(event)}} />)
         }
     }

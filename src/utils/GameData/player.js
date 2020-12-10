@@ -1,12 +1,13 @@
-function Player(name = '', isNPC = true) {
+function Player(name, isNPC = true, chanceToFlee) {
     this.name = name;
     this.isNPC = isNPC;
-    this.activeGear={}
+    this.activeGear={};
 }
 
 Player.prototype.getStats = function () {
     return {
-        hitpoints: this.hitpoints,
+        maxHitpoints: this.maxHitpoints,
+        currentHitpoints: this.currentHitpoints,
         initiative: this.initiative,
         speed: this.speed,
         armor: this.armor,
@@ -23,7 +24,8 @@ Player.prototype.getStats = function () {
 };
 
 Player.prototype.setStats = function (stats) {
-    this.hitpoints = stats.hitpoints || 15;
+    this.currentHitpoints = stats.currentHitpoints || 15;
+    this.maxHitpoints = stats.maxHitpoints || 15;
     this.initiative = stats.initiative || 0;
     this.speed = stats.speed || 5;
     this.armor = stats.armor || 12;
@@ -32,6 +34,8 @@ Player.prototype.setStats = function (stats) {
     this.sneakBonus = stats.sneakBonus || 0;
     this.trapDisableBonus = stats.trapDisableBonus || 0;
     this.agility = stats.agility || 0;
+    //chanceToFlee will be the % chance of an npc fleeing if brought below 50% hitpoints
+    this.chanceToFlee = stats.chanceToFlee || 5;
 };
 
 Player.prototype.setMovementRemaining = function(newValue){
@@ -95,22 +99,19 @@ Player.prototype.getWeapon = function(){
 }
 
 Player.prototype.getHitpoints = function () {
-    return `${this.name}'s health is now ${this.hitpoints}!`;
+    return `${this.name}'s health is now ${this.currentHitpoints}!`;
 };
 
 Player.prototype.isAlive = function () {
-    if (this.health === 0) {
+    if (this.currentHitpoints <= 0) {
         return false;
     }
     return true;
 };
 
 Player.prototype.reduceHitpoints = function (damage) {
-    this.hitpoints -= damage;
-
-    if (this.hitpoints < 0) {
-        this.hitpoints = 0;
-    }
+    this.currentHitpoints -= damage;
+    this.currentHitpoints = Math.max(this.currentHitpoints, 0)
 };
 
 Player.prototype.getAttackValue = function () {

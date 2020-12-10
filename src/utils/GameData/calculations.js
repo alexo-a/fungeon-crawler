@@ -42,7 +42,9 @@ export function attackTarget(attacker, target){
         let damageDone = roll(attacker.activeWeapon.damage)
         target.reduceHitpoints(damageDone);
         console.log(`attack hit! ${attacker.name} does ${damageDone} damage. ${target.getHitpoints()}`)
-        
+        if(!target.isAlive()){
+            console.log(`${target.name} died :(`)
+        }
     }
-    else {console.log("whoosh.")}
+    else {console.log("**whoosh** (attack missed)")}
 }

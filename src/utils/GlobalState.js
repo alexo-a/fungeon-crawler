@@ -9,9 +9,9 @@ const { Provider } = StoreContext;
 const geraldo = new Player("Geraldo");
 geraldo.setStats({speed: 5, hitBonus: 2, isNPC: false})
 geraldo.setPosition({ x: 9, y: 9 })
-geraldo.setInventory([{...Items.gold, quantity: 150}, {...Items.shortsword, quantity: 1}])
+geraldo.setInventory([{...Items.gold, quantity: 150}, {...Items.shortbow, quantity: 1}])
 geraldo.setMovementRemaining()
-geraldo.equipWeapon(Items.shortsword)
+geraldo.equipWeapon(Items.shortbow)
 
 const boblin = new Player("Boblin");
 boblin.setStats({ speed: 5, isNPC: true})

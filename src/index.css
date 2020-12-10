@@ -1,3 +1,10 @@
+:root {
+    --icon-dead: url("./assets/sprites/dead-icon.png");
+    --icon-player: url("./assets/sprites/player.png");
+--icon-goblin: url("./assets/sprites/goblin.png");
+}
+
+
 body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
@@ -6,6 +13,8 @@ body {
     padding-top: 5px;
     background-image: url("./assets/images/dungeon-wall.png");
 }
+
+
 
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
@@ -48,13 +57,19 @@ code {
 
 .activePlayer{
     /*background-color: gold !important*/
-    background-image: url("./assets/sprites/player.png");
+    background-image: var(--icon-player);
     background-repeat: no-repeat;
     background-size: cover;
 }
 
 .mob {
-    background-image: url("./assets/sprites/goblin.png");
+    background-image: var(--icon-goblin);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.dead-mob {
+        background-image: var(--icon-dead);
     background-repeat: no-repeat;
     background-size: cover;
 }
