@@ -105,9 +105,10 @@ function Map() {
     for (let y = 0; y < 10; y++) {
         squares.push([])
         for (let x = 0; x < 10; x++) {
+            let remainingHitpointsDisplay = undefined;
             let classes = "square";
             //if (x===9){console.log(player.position); console.log({x,y})}
-            if (doPositionsMatch(player.position, {x,y})) { classes = "square activePlayer"; console.log("match2")}
+            if (doPositionsMatch(player.position, { x, y })) { classes = "square activePlayer"; remainingHitpointsDisplay = state.entities[playerIndex].currentHitpoints / state.entities[playerIndex].maxHitpoints}
             //else if (enemyPosition.x === x && enemyPosition.y === y) { classes = "square mob" }
             
             else if (playersTurn && playerMoving && calculateDistance({x,y},player.position) <= player.movementRemaining && state.movementMode) { classes = "square green" }
@@ -116,19 +117,20 @@ function Map() {
                 for (let i = 0; i < hostilePositions.length; i++){
                     if (doPositionsMatch(hostilePositions[i],{x,y})){
                         //if player's turn and attack mode and within wep range
-                        if (state.whoseTurn === playerIndex && state.attackMode && calculateDistance({ x, y }, player.position) <= player.activeWeapon.range) { classes = "square mob red-background"}
+                        if (state.whoseTurn === playerIndex && state.attackMode && calculateDistance({ x, y }, player.position) <= player.activeWeapon.range) { classes = "square mob red-background"; remainingHitpointsDisplay = state.entities[i].currentHitpoints / state.entities[i].maxHitpoints}
                         
                         
                         //else if mob is alive
-                        else if (state.entities[i].isAlive()) { classes = "square mob"}
+                        else if (state.entities[i].isAlive()) { classes = `square mob`; remainingHitpointsDisplay = state.entities[i].currentHitpoints / state.entities[i].maxHitpoints}
                         
                         //else 
                         else { classes = "square dead-mob"}
                         
                     }
                 }
+                console.log(remainingHitpointsDisplay)
             //}
-            squares[y].push(<Square x={x} y={y} classNames={classes} key={x.toString() + y.toString()} handleClick={(event)=>{handleClick(event)}} />)
+            squares[y].push(<Square x={x} y={y} classNames={classes} key={x.toString() + y.toString()} handleClick={(event) => { handleClick(event) }} hitpointsRemainingDecimal={remainingHitpointsDisplay} />)
         }
     }
 
