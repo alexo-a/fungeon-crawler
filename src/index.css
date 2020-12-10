@@ -31,7 +31,8 @@ code {
     text-align: center;
     width: min(10vw, calc((100vh - 100px)/10));
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    flex-direction: column;
     background-color: grey;
     justify-content: center;
 }
@@ -54,18 +55,21 @@ code {
 .green{
     background-color: green;
 }
-
-.activePlayer{
+.img-loc{
+    height: 95%;
+    width: 100%;
+}
+.activePlayer .img-loc{
     /*background-color: gold !important*/
     background-image: var(--icon-player);
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
 }
 
-.mob {
+.mob .img-loc{
     background-image: var(--icon-goblin);
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
 }
 
 .dead-mob {
@@ -104,4 +108,23 @@ button:hover {
 .red-background {
     /*border: 2px solid red !important;*/
     background-color: red;
+}
+
+
+.hitpointsBar {
+    height: 5%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.hitpointsRemaining{
+    background-color: green;
+    height: 100%;
+}
+
+.hitpointsLost{
+    background-color: red;
+    height: 100%;
 }
