@@ -36,6 +36,7 @@ Player.prototype.setStats = function (stats) {
     this.agility = stats.agility || 0;
     //chanceToFlee will be the % chance of an npc fleeing if brought below 50% hitpoints
     this.chanceToFlee = stats.chanceToFlee || 5;
+    this.aggroRange = stats.aggroRange || 2;
 };
 
 Player.prototype.setMovementRemaining = function(newValue){

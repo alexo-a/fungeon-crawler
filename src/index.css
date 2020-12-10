@@ -25,11 +25,11 @@ code {
     border: 1px solid black;
     float: left;
     font-weight: bold;
-    height: min(10vw, calc((100vh - 100px)/10));
+    /*height: min(10vw, calc((100vh - 100px)/10));
+    width: min(10vw, calc((100vh - 100px)/10));*/
     margin: 0px;
     padding: 0;
     text-align: center;
-    width: min(10vw, calc((100vh - 100px)/10));
     display: flex;
     align-items: flex-start;
     flex-direction: column;

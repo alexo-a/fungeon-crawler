@@ -7,13 +7,13 @@ import {calculateDistance, attackTarget} from "../../utils/GameData/calculations
 
 const playerIndex=0;
 
-function Map() {
+
+function Map({gridSize=10}) {
     let squares = [];
     let [state, dispatch] = useStoreContext();
     const playersTurn = state.whoseTurn===playerIndex;
     let playerMoving = state.entities[0].movementRemaining > 0;
-    let player = state.entities[0];
-    let enemyPosition = state.entities[1].position;
+    let player = state.entities[playerIndex];
     let hostilePositions = []
     //const playerSpeed = state.entities[0].speed;
 
@@ -34,8 +34,8 @@ function Map() {
 
     const handleClick = event => {
         const targetPosition = { 
-            x: parseInt(event.target.attributes.x.value), 
-            y: parseInt(event.target.attributes.y.value) 
+            x: parseInt(event.target.getAttribute("x") || event.target.parentElement.getAttribute("x")), 
+            y: parseInt(event.target.getAttribute("y") || event.target.parentElement.getAttribute("y")) 
         }
 
         if (state.movementMode) {
@@ -102,9 +102,9 @@ function Map() {
 
     //console.log(state)
 
-    for (let y = 0; y < 10; y++) {
+    for (let y = 0; y < gridSize; y++) {
         squares.push([])
-        for (let x = 0; x < 10; x++) {
+        for (let x = 0; x < gridSize; x++) {
             let remainingHitpointsDisplay = undefined;
             let classes = "square";
             //if (x===9){console.log(player.position); console.log({x,y})}
@@ -128,7 +128,6 @@ function Map() {
                         
                     }
                 }
-                console.log(remainingHitpointsDisplay)
             //}
             squares[y].push(<Square x={x} y={y} classNames={classes} key={x.toString() + y.toString()} handleClick={(event) => { handleClick(event) }} hitpointsRemainingDecimal={remainingHitpointsDisplay} />)
         }
