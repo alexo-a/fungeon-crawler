@@ -145,7 +145,6 @@ Player.prototype.getName = function () {
     return this.name;
 }
 
-<<<<<<< HEAD:src/utils/GameData/player.js
 Player.prototype.willFlee = function () {
     if (this.currentHitpoints < this.maxHitpoints && (this.currentHitpoints / this.maxHitpoints) <= 0.5 && roll(20) <= this.chanceToFlee){
         return true;
@@ -154,6 +153,3 @@ Player.prototype.willFlee = function () {
 };
 
 export default  Player;
-=======
-module.exports = Player;
->>>>>>> 6f5edcabff9c12c147f6d0c6a95c019d0b8d5071:src/utils/GameData/Player.js
