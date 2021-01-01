@@ -1,4 +1,6 @@
-function Player(name, isNPC = true, chanceToFlee) {
+import {roll} from "./calculations"
+
+function Player(name, isNPC = true) {
     this.name = name;
     this.isNPC = isNPC;
     this.activeGear={};
@@ -143,4 +145,11 @@ Player.prototype.getName = function () {
     return this.name;
 }
 
-module.exports = Player;
+Player.prototype.willFlee = function () {
+    if (this.currentHitpoints < this.maxHitpoints && (this.currentHitpoints / this.maxHitpoints) <= 0.5 && roll(20) <= this.chanceToFlee){
+        return true;
+    }
+    return false;
+};
+
+export default  Player;

@@ -17,6 +17,9 @@ function Map({gridSize=10}) {
     let hostilePositions = []
     //const playerSpeed = state.entities[0].speed;
 
+
+
+    
     function doPositionsMatch(positionOne, positionTwo){
         return positionOne.x === positionTwo.x && positionOne.y === positionTwo.y
     }
