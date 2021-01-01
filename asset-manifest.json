@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/fungeon-crawler/static/css/main.2d6ffdb4.chunk.css",
+    "main.js": "/fungeon-crawler/static/js/main.8401c99d.chunk.js",
+    "main.js.map": "/fungeon-crawler/static/js/main.8401c99d.chunk.js.map",
+    "runtime-main.js": "/fungeon-crawler/static/js/runtime-main.dcf99849.js",
+    "runtime-main.js.map": "/fungeon-crawler/static/js/runtime-main.dcf99849.js.map",
+    "static/js/2.5993e765.chunk.js": "/fungeon-crawler/static/js/2.5993e765.chunk.js",
+    "static/js/2.5993e765.chunk.js.map": "/fungeon-crawler/static/js/2.5993e765.chunk.js.map",
+    "index.html": "/fungeon-crawler/index.html",
+    "static/css/main.2d6ffdb4.chunk.css.map": "/fungeon-crawler/static/css/main.2d6ffdb4.chunk.css.map",
+    "static/js/2.5993e765.chunk.js.LICENSE.txt": "/fungeon-crawler/static/js/2.5993e765.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.dcf99849.js",
+    "static/js/2.5993e765.chunk.js",
+    "static/css/main.2d6ffdb4.chunk.css",
+    "static/js/main.8401c99d.chunk.js"
+  ]
+}
