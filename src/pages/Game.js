@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Map from "../components/Map"
 import Footer from "../components/Footer"
 import { useStoreContext } from '../utils/GlobalState';
@@ -20,10 +20,11 @@ function Game(){
             }
         }*/
     }
-    
+    useEffect(()=> {
+        $(".square").css("height", `min(10vw, calc((100vh - 100px)/${gridSize}),calc(100vw/${gridSize}))`);
+        $(".square").css("width", `min(10vw, calc((100vh - 100px)/${gridSize}),calc(100vw/${gridSize}))`)
+    })
 
-    $(".square").css("height",`min(10vw, calc((100vh - 100px)/${gridSize}))`);
-    $(".square").css("width", `min(10vw, calc((100vh - 100px)/${gridSize}))`)
     return (
         <>
         <div className="game">
@@ -31,7 +32,7 @@ function Game(){
                     <Map gridSize={gridSize} />
             </div>
         </div>
-
+        
         {/* will need to figure out how to correctly get playerIndex here later. */}
         <Footer playerIndex={playerIndex}></Footer>
         </>
